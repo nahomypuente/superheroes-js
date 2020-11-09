@@ -14,7 +14,11 @@ class SuperHeroeService {
                     throw new BadRequest({message: 'character id already exists'});
                 }
             }
-            const superheroe = new SuperHeroe(req.body);
+            const superheroe = new SuperHeroe();
+            superheroe.id_character = req.body.id;
+            superheroe.name = req.body.name;
+            superheroe.description = req.body.description;
+            superheroe.image = req.body.image;
             await superheroe.save();
             res.status(200).send(superheroe);
         } catch (err) {

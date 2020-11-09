@@ -7,7 +7,10 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors');
 
-//const fs = require('fs');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerDocument = require('./swagger.json');
+
 const fetch = require('node-fetch');
 const url = require('url');
 const { response } = require('express');
@@ -20,11 +23,15 @@ const router = express.Router();
 const baseUrl = 'https://gateway.marvel.com';
 const PUBLIC_KEY = process.env.PUBLIC_KEY;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
-console.log(process.env.PUBLIC_KEY);
-const HASH = process.env.HASH;
 
-//const hostname = '127.0.0.1';
 const port = 3000;
+
+const specs = swaggerJsdoc(options);
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument)
+);
 
 const userLocation = (url1, url2) => {
   let url = new URL(url1 + url2);

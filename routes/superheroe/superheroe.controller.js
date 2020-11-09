@@ -1,5 +1,5 @@
 const express = require('express');
-const SuperHeroeService = require('./superheroes.service');
+const SuperHeroeService = require('./superheroe.service');
 const superheroeRouter = express.Router();
 
 superheroeRouter.get('/', SuperHeroeService.getSuperHeroes);
