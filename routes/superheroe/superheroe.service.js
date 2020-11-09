@@ -5,13 +5,13 @@ class SuperHeroeService {
     static async addSuperHeroe(req, res) {
         try {
             console.log('POST /superheroe');
-            const id = req.body.id;
+            const id_character = req.body.id;
 
-            let superheroeDB = await SuperHeroe.findOne({id: id});
-
+            let superheroeDB = await SuperHeroe.findOne({id_character});
+            console.log(superheroeDB);
             if (superheroeDB) {
-                if (req.body.id == superheroeDB.id) {
-                    throw new BadRequest({message: 'character id already exists'});
+                if (req.body.id == superheroeDB.id_character) {
+                    throw new({message: 'character id already exists'});
                 }
             }
             const superheroe = new SuperHeroe();
@@ -29,7 +29,6 @@ class SuperHeroeService {
     static async getSuperHeroes(req, res) {
         try {
             console.log('GET /superheroe');
-            console.log(req.query);
             const superheroe = await SuperHeroe.find(req.query);
             res.send(superheroe);
         } catch (err) {

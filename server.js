@@ -25,8 +25,6 @@ const PUBLIC_KEY = process.env.PUBLIC_KEY;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 const port = 3000;
-
-const specs = swaggerJsdoc(options);
 app.use(
   "/api-docs",
   swaggerUi.serve,
